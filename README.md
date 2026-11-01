@@ -14,7 +14,7 @@ $$x_1 \sim \mathcal{N}(0, 1), \quad x_2 \sim \mathcal{N}(0, 1)$$
 
 Treatment assignment $D \in \{0, 1\}$ follows a logistic propensity score model:
 
-$$P(D=1 \mid X) = \operatorname{expit}(-0.3 + 0.8x_1 - 0.6x_2)$$
+$$P(D=1 \mid X) = \mathrm{expit}(-0.3 + 0.8x_1 - 0.6x_2)$$
 
 The observed outcome is generated according to:
 
@@ -40,9 +40,9 @@ The true theoretical Average Treatment Effect (ATE) is $\tau = 2.0$.
 
 Metrics evaluated for each estimator:
 - **Mean Estimate**: $\bar{\hat{\tau}} = \frac{1}{R} \sum_{r=1}^R \hat{\tau}_r$
-- **Bias**: $\widehat{\operatorname{Bias}} = \frac{1}{R}\sum_{r=1}^{R}(\hat\tau_r-\tau)$
+- **Bias**: $\widehat{\mathrm{Bias}} = \frac{1}{R}\sum_{r=1}^{R}(\hat\tau_r-\tau)$
 - **Monte Carlo Standard Deviation**: $\text{SD} = \sqrt{\frac{1}{R-1}\sum_{r=1}^R (\hat\tau_r - \bar{\hat{\tau}})^2}$
-- **Root Mean Squared Error**: $\widehat{\operatorname{RMSE}} = \sqrt{\frac{1}{R}\sum_{r=1}^{R}(\hat\tau_r-\tau)^2}$
+- **Root Mean Squared Error**: $\widehat{\mathrm{RMSE}} = \sqrt{\frac{1}{R}\sum_{r=1}^{R}(\hat\tau_r-\tau)^2}$
 
 ## Results
 
