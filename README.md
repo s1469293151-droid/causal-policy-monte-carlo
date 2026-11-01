@@ -12,7 +12,7 @@ For each individual, two continuous covariates are generated:
 
 $$x_1 \sim \mathcal{N}(0, 1), \quad x_2 \sim \mathcal{N}(0, 1)$$
 
-Treatment assignment $D \in \{0, 1\}$ follows a logistic propensity score model:
+Treatment assignment $D \in \lbrace 0, 1 \rbrace$ follows a logistic propensity score model:
 
 $$P(D=1 \mid X) = \mathrm{expit}(-0.3 + 0.8x_1 - 0.6x_2)$$
 
@@ -24,21 +24,23 @@ The true theoretical Average Treatment Effect (ATE) is $\tau = 2.0$.
 
 ## Methods
 
-1. **Naive Estimator**:
+**1. Naive Estimator**
 
-   ```math
-   \hat{\tau}_{\text{Naive}} = \bar{Y}_{D=1} - \bar{Y}_{D=0}
-   ```
+```math
+\hat{\tau}_{\text{Naive}} = \bar{Y}_{D=1} - \bar{Y}_{D=0}
+```
 
-2. **OLS Regression Adjustment**:
-   Fits an ordinary least squares regression of $Y$ on $D$, $x_1$, $x_2$, and $x_1^2$, controlling for all linear and non-linear confounders.
+**2. OLS Regression Adjustment**
 
-3. **Hájek IPW Estimator**:
-   Estimates propensity scores $\hat{e}(X)$ via logistic regression and computes self-normalized weighted averages:
+Fits an ordinary least squares regression of $Y$ on $D$, $x_1$, $x_2$, and $x_1^2$, controlling for all linear and non-linear confounders.
 
-   ```math
-   \hat{\tau}_{\text{IPW}} = \frac{\sum_{i=1}^n \frac{D_i Y_i}{\hat{e}(X_i)}}{\sum_{i=1}^n \frac{D_i}{\hat{e}(X_i)}} - \frac{\sum_{i=1}^n \frac{(1 - D_i) Y_i}{1 - \hat{e}(X_i)}}{\sum_{i=1}^n \frac{1 - D_i}{1 - \hat{e}(X_i)}}
-   ```
+**3. Hájek IPW Estimator**
+
+Estimates propensity scores $\hat{e}(X)$ via logistic regression and computes self-normalized weighted averages:
+
+```math
+\hat{\tau}_{\text{IPW}} = \frac{\sum_{i=1}^n \frac{D_i Y_i}{\hat{e}(X_i)}}{\sum_{i=1}^n \frac{D_i}{\hat{e}(X_i)}} - \frac{\sum_{i=1}^n \frac{(1 - D_i) Y_i}{1 - \hat{e}(X_i)}}{\sum_{i=1}^n \frac{1 - D_i}{1 - \hat{e}(X_i)}}
+```
 
 ## Monte Carlo Design
 
